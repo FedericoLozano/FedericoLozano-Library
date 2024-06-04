@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center">Search Book</h2>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <form method="get" class="d-flex" role="search">
+                <input class="form-control" type="text" name="q" placeholder="Search...">
+                <button class="btn btn-outline-secondary ms-5" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    <br>
+{% if query %}
+<div class="alert alert-secondary" role="alert">
+    <h3 class="display-6">Results for "{{ query }}":</h3>
+    <ul class="nav">
+        {% for libro in libros %}
+            <li class="nav-item">{{ libro.titulo }} by {{ libro.autor }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+</div>
+{% endblock %}

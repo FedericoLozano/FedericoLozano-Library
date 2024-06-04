@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center">Book registration form</h2>
+    <hr>
+    <br>
+    <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Campo Título -->
+                <div class="form-group">
+                    <label for="id_titulo">Title:</label>
+                    <input type="text" class="form-control" id="id_titulo" name="titulo" value="{{ form.titulo.value|default_if_none:'' }}" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- Campo Autor -->
+                <div class="form-group">
+                    <label for="id_autor">Author:</label>
+                    <select class="form-control" id="id_autor" name="autor" required>
+                        {% for autor in form.fields.autor.queryset %}
+                            <option value="{{ autor.pk }}" {% if form.autor.value == autor.pk %}selected{% endif %}>{{ autor }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <!-- Campo Fecha de Publicación -->
+            <div class="form-group">
+                <label for="id_fecha_publicacion">Publication date:</label>
+                <input type="date" class="form-control" id="id_fecha_publicacion" name="fecha_publicacion" value="{{ form.fecha_publicacion.value|default_if_none:'' }}" required>
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-outline-secondary" style="margin-left: 45%;">Register Book</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+        <h2 class="text-center">Author registration form</h2>
+        <hr>
+        <br>
+        <form method="post">
+            {% csrf_token %}
+        <div class="row">
+            <!-- Campo Nombre -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="id_nombre">Name:</label>
+                    <input type="text" class="form-control" id="id_nombre" name="nombre" value="{{ form.nombre.value|default_if_none:'' }}" required>
+                </div>
+            </div>
+            <!-- Campo Apellido -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="id_apellido">Lastname:</label>
+                    <input type="text" class="form-control" id="id_apellido" name="apellido" value="{{ form.apellido.value|default_if_none:'' }}" required>
+                </div>
+            </div>
+        </div>
+        <!-- Campo Fecha de Nacimiento -->
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="id_fecha_nacimiento">Birthdate:</label>
+                <input type="date" class="form-control" id="id_fecha_nacimiento" name="fecha_nacimiento" value="{{ form.fecha_nacimiento.value|default_if_none:'' }}" required>
+            </div>
+        </div>
+        <button class="btn btn-outline-secondary mt-2" style="margin-left: 45%;" type="submit">Register author</button>
+        </form>
+</div>
+{% endblock %}

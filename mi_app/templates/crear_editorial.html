@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center">Editorial registration form</h2>
+    <hr>
+    <br>
+    <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <!-- Campo Nombre -->
+        <div class="form-group">
+            <label for="id_nombre">Name:</label>
+            <input type="text" class="form-control" id="id_nombre" name="nombre" value="{{ form.nombre.value|default_if_none:'' }}" required>
+        </div>
+        <!-- Campo Dirección -->
+        <div class="form-group mt-1">
+            <label for="id_direccion">Adress:</label>
+            <input type="text" class="form-control" id="id_direccion" name="direccion" value="{{ form.direccion.value|default_if_none:'' }}" required>
+        </div>
+        <!-- Campo Libros (sin aplicar estilos) -->
+        <div class="form-group custom-select-style mt-1">
+            <label for="">Books:</label>
+            <br>
+            {{ form.libros }}
+        </div>
+        <br>
+        <button type="submit" class="btn btn-outline-secondary" style="margin-left: 45%;">Register Editorial</button>
+    </form>
+</div>
+<style>
+    .custom-select-style select {
+        /* Estilos personalizados aquí */
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+</style>
+{% endblock %}
